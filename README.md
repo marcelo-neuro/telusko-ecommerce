@@ -1,1 +1,1 @@
-# telusko-marketplace
+# telusko-ecommerce
