@@ -1,5 +1,6 @@
 package com.marcelo_neuro.telusko_ecommerce.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.marcelo_neuro.telusko_ecommerce.entities.Product;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -41,6 +42,7 @@ public class ProductDTO {
     private BigDecimal price;
 
     @NotNull(message = "Field 'releaseDate' must be filled.")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date releaseDate;
     private boolean productAvailable;
 
