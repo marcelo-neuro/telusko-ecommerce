@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -13,6 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Component
 public class ProductDTO {
 
     private Long id;
@@ -46,6 +49,14 @@ public class ProductDTO {
     private Integer stockQuantity;
 
     public ProductDTO(Product entity) {
-        BeanUtils.copyProperties(entity, this);
+        this.id = entity.getId();
+        this.name = entity.getName();
+        this.description = entity.getDescription();
+        this.brand = entity.getBrand();
+        this.category = entity.getCategory();
+        this.price = entity.getPrice();
+        this.releaseDate = entity.getReleaseDate();
+        this.productAvailable = entity.isProductAvailable();
+        this.stockQuantity = entity.getStockQuantity();
     }
 }
