@@ -2,12 +2,13 @@ package com.marcelo_neuro.telusko_ecommerce.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.marcelo_neuro.telusko_ecommerce.entities.Product;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.BeanUtils;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -17,7 +18,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Component
-public class ProductDTO {
+public class ProductRequestDTO {
 
     private Long id;
 
@@ -50,7 +51,7 @@ public class ProductDTO {
     @Positive(message = "Field 'stockQuantity', must be a positive value.")
     private Integer stockQuantity;
 
-    public ProductDTO(Product entity) {
+    public ProductRequestDTO(Product entity) {
         this.id = entity.getId();
         this.name = entity.getName();
         this.description = entity.getDescription();
