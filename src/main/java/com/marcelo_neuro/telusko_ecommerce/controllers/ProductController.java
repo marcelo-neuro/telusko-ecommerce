@@ -35,15 +35,35 @@ public class ProductController {
         return ResponseEntity.ok(service.findImageById(id));
     }
 
+    @GetMapping("/product/search")
+    public ResponseEntity<List<ProductResponseDTO>> search(@RequestParam String keyword) {
+        return ResponseEntity.ok(service.search(keyword));
+    }
+
     @PostMapping(path = "/product")
-    public ResponseEntity<?> add(@Valid @RequestPart ProductRequestDTO requestProduct,
-                                                  @RequestPart MultipartFile imageFile) throws IOException {
+    public ResponseEntity<?> add(@Valid @RequestPart ProductRequestDTO product,
+                                 @RequestPart MultipartFile imageFile) throws IOException {
         try {
-            return ResponseEntity.ok(service.add(requestProduct, imageFile));
+            return ResponseEntity.ok(service.add(product, imageFile));
         } catch (IOException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
+    @PutMapping("/product/{id}")
+    public ResponseEntity<?> update(@PathVariable Long id, @Valid @RequestPart ProductRequestDTO product,
+                                    @RequestPart MultipartFile imageFile) {
+        try {
+            return ResponseEntity.ok(service.update(id, product, imageFile));
+        } catch (IOException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/product/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
