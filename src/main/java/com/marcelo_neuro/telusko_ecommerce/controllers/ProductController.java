@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
+@CrossOrigin(value = {"http://localhost:5173/"})
 public class ProductController {
 
     @Autowired
@@ -35,7 +35,7 @@ public class ProductController {
         return ResponseEntity.ok(service.findImageById(id));
     }
 
-    @GetMapping("/product/search")
+    @GetMapping("/products/search")
     public ResponseEntity<List<ProductResponseDTO>> search(@RequestParam String keyword) {
         return ResponseEntity.ok(service.search(keyword));
     }
